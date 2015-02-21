@@ -62,5 +62,12 @@ module Prelaunchr
     config.assets.version = '1.0'
 
     config.ended = false
+
+    def secrets
+      @secrets ||= begin
+        yaml = YAML.load(File.open("#{Rails.root}/config/secrets.yml"))[Rails.env]
+        ActiveSupport::OrderedOptions.new.merge!(yaml.symbolize_keys)
+      end
+    end
   end
 end

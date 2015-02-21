@@ -7,8 +7,16 @@ ActiveAdmin.register User do
     column :referrer_id
     column :created_at
     column :updated_at
+    column "referals" do |user|
+      user.referrals.count
+    end
   end
 
+  filter :referrer, as: :select, collection: proc {User.all.map{|u| [u.email, u.id]}}
+  filter :email
+  filter :referral_code
+  filter :created_at
+  filter :updated_at
+
   actions :index, :show
-  
 end

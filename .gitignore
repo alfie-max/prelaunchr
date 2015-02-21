@@ -18,3 +18,7 @@
 .DS_Store
 
 .elasticbeanstalk
+
+public/assets/*
+
+.capistrano
